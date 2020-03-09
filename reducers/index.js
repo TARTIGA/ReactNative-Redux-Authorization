@@ -1,10 +1,3 @@
-// https://github.com/svrcekmichal/redux-axios-middleware
-// Every action which have payload.request defined will be handled by middleware. There are two possible type definitions.
-
-// use action.type with string name
-// action with type will be dispatched on start, and then followed by type suffixed with underscore and
-// success suffix on success, or error suffix on error
-// defaults: success suffix = "_SUCCESS" error suffix = "_FAIL"
 export const GET_TOKEN = 'GET_TOKEN';
 export const GET_TOKEN_SUCCESS = 'GET_TOKEN_SUCCESS';
 export const GET_TOKEN_FAIL = 'GET_TOKEN_FAIL';
