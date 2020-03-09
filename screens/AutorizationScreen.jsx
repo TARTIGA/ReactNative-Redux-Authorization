@@ -6,7 +6,7 @@ import WaterfallImage from '../assets/waterfall.svg'
 import SvgUri from 'react-native-svg-uri';
 
 import { connect } from 'react-redux';
-import { getToken } from '../reducers';
+import { getToken } from '../actions';
 
 
 const AutorizationScreen = ({ getToken, token, navigation }) => {
