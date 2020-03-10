@@ -34,7 +34,6 @@ const AutorizationScreen = ({ getToken, token, navigation }) => {
             if (isSending) {
                 try {
                     await getToken();
-                    showAlert('RESPONSE TOKEN', `${token}`)
                 } catch (error) {
                     showAlert('ERROR', error)
                 } finally {
@@ -44,6 +43,12 @@ const AutorizationScreen = ({ getToken, token, navigation }) => {
         };
         getTokenRequest();
     }, [isSending]);
+
+    useEffect(() => {
+        if (token) {
+            showAlert('RESPONSE TOKEN', `${token}`)
+        }
+    }, [token]);
 
     return (
         <Container behavior="position" contentContainerStyle={{
