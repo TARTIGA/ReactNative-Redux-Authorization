@@ -9,8 +9,7 @@ const AuthStack = createStackNavigator();
 const AppStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
-
-import { connect } from 'react-redux';
+import { useSelector } from "react-redux";
 
 //don`t use expressions
 const AppStackScreen = () =>
@@ -25,13 +24,16 @@ const AuthStackScreen = () =>
     }} />
   </AuthStack.Navigator>
 
-const RootStackScreen = ({ userToken }) =>
-  <RootStack.Navigator headerMode="none">
-    {userToken ?
-      <RootStack.Screen name="App" component={AppStackScreen} /> :
-      <RootStack.Screen name="Auth" component={AuthStackScreen} />}
-  </RootStack.Navigator>
-
+const RootStackScreen = () => {
+  const userToken = useSelector(state => state.token);
+  return (
+    <RootStack.Navigator headerMode="none">
+      {userToken ?
+        <RootStack.Screen name="App" component={AppStackScreen} /> :
+        <RootStack.Screen name="Auth" component={AuthStackScreen} />}
+    </RootStack.Navigator>
+  )
+}
 
 const App = () => {
   return (
@@ -43,4 +45,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App

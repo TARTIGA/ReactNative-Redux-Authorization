@@ -1,4 +1,4 @@
-import { GET_TOKEN, GET_TOKEN_SUCCESS, GET_TOKEN_FAIL } from './constants'
+import { GET_TOKEN, GET_TOKEN_SUCCESS, GET_TOKEN_FAIL, DELETE_TOKEN } from './constants'
 
 export default function reducer(state = { token: null }, action) {
     switch (action.type) {
@@ -11,6 +11,11 @@ export default function reducer(state = { token: null }, action) {
                 ...state,
                 loading: false,
                 error: 'Error while fetching account'
+            };
+        case DELETE_TOKEN:
+            return {
+                ...state,
+                token: null,
             };
         default:
             return state;

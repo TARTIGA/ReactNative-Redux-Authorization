@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components/native'
 import { Text, Alert } from 'react-native'
 import { Link, CustomTextInput, Button } from '../components'
 import WaterfallImage from '../assets/waterfall.svg'
 import SvgUri from 'react-native-svg-uri';
-
-import { connect } from 'react-redux';
 import { getToken } from '../actions';
 
 
-const AutorizationScreen = ({ getToken, token, navigation }) => {
+const AutorizationScreen = ({ navigation }) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [isSending, setIsSending] = useState(false)
+
+    const token = useSelector(state => state.token);
+    const dispatch = useDispatch();
 
     const showAlert = (title = 'RESPONSE', data) => {
         Alert.alert(
@@ -33,7 +35,7 @@ const AutorizationScreen = ({ getToken, token, navigation }) => {
         const getTokenRequest = async () => {
             if (isSending) {
                 try {
-                    await getToken();
+                    dispatch(getToken())
                 } catch (error) {
                     showAlert('ERROR', error)
                 } finally {
@@ -115,15 +117,5 @@ text-align:center;
 font-size: 12;
 `;
 
-const mapStateToProps = state => {
-    return {
-        token: state.token
-    };
-};
-const mapDispatchToProps = {
-    getToken
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(AutorizationScreen);
+export default AutorizationScreen;
 

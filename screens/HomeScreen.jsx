@@ -3,14 +3,17 @@ import styled from 'styled-components/native'
 import { Text } from 'react-native'
 import { Button } from '../components'
 
-const signOut = () => {
-    // delete token action
-}
+import { deleteToken } from '../actions';
+import { useDispatch, useSelector } from "react-redux";
+
 const HomeScreen = ({ navigation }) => {
+    const token = useSelector(state => state.token);
+    const dispatch = useDispatch();
     return (
         <Container>
             <Text>HomeScreen</Text>
-            <Button handler={() => signOut()} >
+            <Text>Token = {token}</Text>
+            <Button handler={() => dispatch(deleteToken())} >
                 <Text>Sign Out</Text>
             </Button>
         </Container>
